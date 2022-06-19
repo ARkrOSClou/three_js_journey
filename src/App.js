@@ -53,8 +53,10 @@ const init = (canvas) => {
   group.position.set(0, 0, 0)
   scene.add(group)
 
-  // const material = new THREE.MeshNormalMaterial({ flatShading: true })
-  const material = new THREE.MeshPhongMaterial({ color: '#ccc', shininess: 20 })
+  const material = new THREE.MeshStandardMaterial({
+    color: '#ccc',
+    // flatShading: true
+  })
   const baseMaterial = new THREE.MeshLambertMaterial({ color: '#444' })
 
   const base = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), baseMaterial)
@@ -66,7 +68,7 @@ const init = (canvas) => {
   box.rotation.y = 0.6
   group.add(box)
 
-  const cone = new THREE.Mesh(new THREE.ConeGeometry(0.8, 2, 160), material)
+  const cone = new THREE.Mesh(new THREE.ConeGeometry(0.8, 2, 50), material)
   cone.position.set(-1, 1, 0.6)
   group.add(cone)
 
