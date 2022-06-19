@@ -53,19 +53,19 @@ const init = (canvas) => {
   // Light
   const ambientLight = new THREE.AmbientLight('#fff', 0.1)
 
-  const directionalLight = new THREE.DirectionalLight('#fff', 0.4)
+  const directionalLight = new THREE.DirectionalLight('#fff', 0.1)
   directionalLight.position.set(1, 8, 4)
   directionalLight.castShadow = true
 
-  directionalLight.shadow.mapSize.width = sizes.width * 2
-  directionalLight.shadow.mapSize.height = sizes.height * 2
+  directionalLight.shadow.mapSize.width = sizes.width
+  directionalLight.shadow.mapSize.height = sizes.height
 
-  const pointLight = new THREE.PointLight('#fff', 0.3, 15)
+  const pointLight = new THREE.PointLight('#fff', 0.5, 15)
   pointLight.position.y = 3
   pointLight.castShadow = true
 
-  pointLight.shadow.mapSize.width = sizes.width * 2
-  pointLight.shadow.mapSize.height = sizes.height * 2
+  pointLight.shadow.mapSize.width = sizes.width
+  pointLight.shadow.mapSize.height = sizes.height
 
   // Controls
   const controls = new OrbitControls(camera, canvas)
