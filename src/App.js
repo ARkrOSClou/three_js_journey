@@ -23,6 +23,13 @@ const init = (canvas) => {
   // scene
   const scene = new THREE.Scene()
 
+  const ambientLight = new THREE.AmbientLight('#fff', 0.5)
+  scene.add(ambientLight)
+
+  const pointLight = new THREE.PointLight('#fff', 0.5)
+  pointLight.position.set(2, 3, 4)
+  scene.add(pointLight)
+
   // Camera
   const aspectRatio = sizes.width / sizes.height
   // const cameraOffset = 4
@@ -46,25 +53,24 @@ const init = (canvas) => {
   group.position.set(0, 0, 0)
   scene.add(group)
 
-  const material = new THREE.MeshNormalMaterial({ flatShading: true })
+  // const material = new THREE.MeshNormalMaterial({ flatShading: true })
+  const material = new THREE.MeshLambertMaterial({ color: '#ccc' })
+  const baseMaterial = new THREE.MeshLambertMaterial({ color: '#444' })
 
-  const base = new THREE.Mesh(
-    new THREE.PlaneGeometry(5, 5),
-    new THREE.MeshBasicMaterial({ color: '#444' })
-  )
+  const base = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), baseMaterial)
   base.rotation.x = -Math.PI * 0.5
   scene.add(base)
-
-  const cone = new THREE.Mesh(new THREE.ConeGeometry(0.8, 2, 40), material)
-  cone.position.set(-1, 1, 0.6)
-  group.add(cone)
 
   const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1.6, 1), material)
   box.position.set(1.6, 0.8, 0)
   box.rotation.y = 0.6
   group.add(box)
 
-  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.7, 32, 16), material)
+  const cone = new THREE.Mesh(new THREE.ConeGeometry(0.8, 2, 60), material)
+  cone.position.set(-1, 1, 0.6)
+  group.add(cone)
+
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.7, 40, 26), material)
   ball.position.set(-0.2, 0.7, -0.8)
   group.add(ball)
 
