@@ -23,7 +23,7 @@ const init = (canvas) => {
   // scene
   const scene = new THREE.Scene()
 
-  const ambientLight = new THREE.AmbientLight('#fff', 0.5)
+  const ambientLight = new THREE.AmbientLight('#fff', 0.1)
   scene.add(ambientLight)
 
   const pointLight = new THREE.PointLight('#fff', 0.5)
