@@ -54,8 +54,7 @@ const init = (canvas) => {
   scene.add(group)
 
   // const material = new THREE.MeshNormalMaterial({ flatShading: true })
-  const material = new THREE.MeshPhongMaterial({ color: '#ccc' })
-  material.shininess = 300
+  const material = new THREE.MeshPhongMaterial({ color: '#ccc', shininess: 20 })
   const baseMaterial = new THREE.MeshLambertMaterial({ color: '#444' })
 
   const base = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), baseMaterial)
