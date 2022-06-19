@@ -51,7 +51,7 @@ const init = (canvas) => {
   // Light
   const ambientLight = new THREE.AmbientLight('#fff', 0.1)
 
-  const pointLight = new THREE.PointLight('#fff', 0.5, 40)
+  const pointLight = new THREE.PointLight('#fff', 0.5, 15)
   pointLight.position.y = 3
   pointLight.castShadow = true
 
