@@ -47,7 +47,7 @@ const init = (canvas) => {
 
   // Camera
   const aspectRatio = sizes.width / sizes.height
-  const camera = new THREE.PerspectiveCamera(45, aspectRatio, 0.1, 100)
+  const camera = new THREE.PerspectiveCamera(45, aspectRatio, 0.1, 50)
   camera.position.set(0, 5, 6)
 
   // Light
@@ -59,6 +59,7 @@ const init = (canvas) => {
 
   directionalLight.shadow.mapSize.width = sizes.width
   directionalLight.shadow.mapSize.height = sizes.height
+  directionalLight.shadow.camera.far = 15
 
   const pointLight = new THREE.PointLight('#fff', 0.5, 15)
   pointLight.position.y = 3
@@ -66,10 +67,6 @@ const init = (canvas) => {
 
   pointLight.shadow.mapSize.width = sizes.width
   pointLight.shadow.mapSize.height = sizes.height
-
-  // Controls
-  const controls = new OrbitControls(camera, canvas)
-  controls.enableDamping = true
 
   // Scene
   const scene = new THREE.Scene()
@@ -89,6 +86,18 @@ const init = (canvas) => {
 
   const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
   // scene.add(directionalLightHelper)
+
+  const directionalLightCamera = new THREE.CameraHelper(directionalLight.shadow.camera)
+  // scene.add(directionalLightCamera)
+
+  // Controls
+  const orbitCamera = new OrbitControls(camera, canvas)
+  // orbitCamera.autoRotate = true
+  orbitCamera.enableDamping = true
+  orbitCamera.minDistance = 4
+  orbitCamera.maxDistance = 10
+  orbitCamera.maxPolarAngle = Math.PI / 2 - 0.1
+  orbitCamera.enablePan = false
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({
@@ -118,7 +127,7 @@ const init = (canvas) => {
     pointLight.position.x = Math.sin(elapsedTime * Math.PI * 0.2) * 5
     pointLight.position.z = Math.cos(elapsedTime * Math.PI * 0.2) * 5
 
-    controls.update()
+    orbitCamera.update()
 
     renderer.render(scene, camera)
 
