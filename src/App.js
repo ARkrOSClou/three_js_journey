@@ -11,7 +11,9 @@ const init = (canvas) => {
 
   const material = new THREE.MeshStandardMaterial({
     color: '#ccc',
-    // flatShading: true
+    // flatShading: true,
+    // roughness: 0,
+    // metalness: 0.2,
   })
 
   // Base
@@ -46,12 +48,16 @@ const init = (canvas) => {
   // Camera
   const aspectRatio = sizes.width / sizes.height
   const camera = new THREE.PerspectiveCamera(45, aspectRatio, 0.1, 100)
-  camera.position.set(0, 5, 10)
+  camera.position.set(0, 5, 6)
 
   // Light
   const ambientLight = new THREE.AmbientLight('#fff', 0.1)
 
-  const pointLight = new THREE.PointLight('#fff', 0.5, 15)
+  const directionalLight = new THREE.DirectionalLight('#fff', 0.4)
+  directionalLight.position.set(1, 8, 4)
+  directionalLight.castShadow = true
+
+  const pointLight = new THREE.PointLight('#fff', 0.3, 15)
   pointLight.position.y = 3
   pointLight.castShadow = true
 
@@ -61,11 +67,22 @@ const init = (canvas) => {
 
   // Scene
   const scene = new THREE.Scene()
-  scene.add(base, objects, camera, ambientLight, pointLight)
+  scene.add(
+    base,
+    objects,
+    camera,
+    ambientLight,
+    directionalLight,
+    pointLight
+    //
+  )
 
   // Helpers
   const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2)
   scene.add(pointLightHelper)
+
+  const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
+  // scene.add(directionalLightHelper)
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({
