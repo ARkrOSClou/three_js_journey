@@ -97,7 +97,8 @@ const init = (canvas) => {
   orbitCamera.minDistance = 4
   orbitCamera.maxDistance = 10
   orbitCamera.maxPolarAngle = Math.PI / 2 - 0.1
-  orbitCamera.enablePan = false
+  orbitCamera.enablePan = true
+  orbitCamera.screenSpacePanning = false
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({
