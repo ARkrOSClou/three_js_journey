@@ -53,7 +53,7 @@ const init = (canvas) => {
   // Light
   const ambientLight = new THREE.AmbientLight('#fff', 0.1)
 
-  const directionalLight = new THREE.DirectionalLight('#fff', 0.1)
+  const directionalLight = new THREE.DirectionalLight('#fff', 0.05)
   directionalLight.position.set(1, 8, 4)
   directionalLight.castShadow = true
 
@@ -66,10 +66,8 @@ const init = (canvas) => {
   directionalLight.shadow.camera.bottom = -3
 
   const pointLight = new THREE.PointLight('#fff', 0.5, 15)
-  pointLight.position.y = 3
+  pointLight.position.set(3, 3, 3)
   pointLight.castShadow = true
-
-  console.log(pointLight.shadow.camera)
 
   pointLight.shadow.mapSize.width = sizes.width
   pointLight.shadow.mapSize.height = sizes.height
@@ -111,6 +109,7 @@ const init = (canvas) => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
   renderer.shadowMap.enabled = true
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
   window.addEventListener('resize', () => {
     sizes.width = window.innerWidth
