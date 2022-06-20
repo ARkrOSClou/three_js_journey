@@ -59,7 +59,12 @@ const init = (canvas) => {
 
   directionalLight.shadow.mapSize.width = sizes.width
   directionalLight.shadow.mapSize.height = sizes.height
-  directionalLight.shadow.camera.far = 15
+  directionalLight.shadow.camera.far = 11
+  console.log(directionalLight.shadow.camera)
+  directionalLight.shadow.camera.top = 3
+  directionalLight.shadow.camera.right = 3
+  directionalLight.shadow.camera.left = -3
+  directionalLight.shadow.camera.bottom = -3
 
   const pointLight = new THREE.PointLight('#fff', 0.5, 15)
   pointLight.position.y = 3
@@ -84,10 +89,10 @@ const init = (canvas) => {
   const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2)
   scene.add(pointLightHelper)
 
-  const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
+  // const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
   // scene.add(directionalLightHelper)
 
-  const directionalLightCamera = new THREE.CameraHelper(directionalLight.shadow.camera)
+  // const directionalLightCamera = new THREE.CameraHelper(directionalLight.shadow.camera)
   // scene.add(directionalLightCamera)
 
   // Controls
